@@ -3,7 +3,7 @@ from floodsystem.geo import stations_by_distance
 
 
 def run():
-    """Requirements for Task 1A"""
+    """Requirements for Task 1B"""
 
     # Build list of stations
     stations = build_station_list()
@@ -15,5 +15,5 @@ def run():
 
 
 if __name__ == "__main__":
-    print("*** Task 1A: CUED Part IA Flood Warning System ***")
+    print("*** Task 1B: CUED Part IA Flood Warning System ***")
     run()
