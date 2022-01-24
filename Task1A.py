@@ -10,11 +10,9 @@ def run():
 
     # Build list of stations
     stations = build_station_list()
-
     # Print number of stations
     print("Number of stations: {}".format(len(stations)))
-
-    # Display data from 3 stations:
+    #Display data from 3 stations:
     for station in stations:
         if station.name in [
                 'Bourton Dickler', 'Surfleet Sluice', 'Gaw Bridge'
