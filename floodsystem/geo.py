@@ -8,8 +8,6 @@ geographical data.
 #from utils import sorted_by_key  
 from haversine import haversine, Unit
 
-from floodsystem.utils import sorted_by_key
-
 def stations_by_distance(stations, p):
     station_list = []
     from floodsystem.utils import sorted_by_key  
