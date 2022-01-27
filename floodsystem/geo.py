@@ -5,12 +5,12 @@
 geographical data.
 """
 
-#from utils import sorted_by_key  
+from .utils import sorted_by_key  
 from haversine import haversine, Unit
 
 def stations_by_distance(stations, p):
     station_list = []
-    from floodsystem.utils import sorted_by_key  
+    #from floodsystem.utils import sorted_by_key  
     for station in stations:
         distance = haversine(station.coord, p)
         station_list.append((station.name,station.town,distance))
