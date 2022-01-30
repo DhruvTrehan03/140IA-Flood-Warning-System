@@ -44,4 +44,32 @@ def stations_by_river(stations):
     for k in river_stations:
         sorted(river_stations[k])
     return river_stations
+
+# Task 1E
+def rivers_by_station_number(stations, N):
+    
+    # Check that N is a valid number of rivers
+    if type(N) is not int:
+        raise TypeError("Number of rivers must be an integer")
+    if N < 1:
+        raise ValueError("Number of rivers must be more than zero")
+    
+    # generate list of tuples for rivers and number of stations
+    river_stations = stations_by_river(stations)
+    station_numbers = []
+    for k in river_stations.keys():
+        station_numbers.append((k,len(river_stations[k])))
+    
+    # utilise function that has been prewritten in utils to sort in descending order
+    station_numbers = sorted_by_key(station_numbers, 1)
+    station_numbers.reverse()
+    
+    # retrieve top highest N rivers by station number, including joint equals
+        # add first value to end to prevent index out of range errors
+    station_numbers.append(station_numbers[0])
+    while station_numbers[N-1][1] == station_numbers[N][1] and N < len(station_numbers)-1:
+        N += 1
+
+    print(N)
+    return station_numbers[0:N]
         
