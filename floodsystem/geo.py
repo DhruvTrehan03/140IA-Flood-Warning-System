@@ -24,4 +24,24 @@ def stations_within_radius(stations, centre, r):
         if distance <= r:
             radius.append(station.name)
     return sorted(radius)
+
+# Task 1D
+def rivers_with_station(stations):
+    rivers_with_station = []
+    for i in stations:
+        if i.river not in rivers_with_station:
+            rivers_with_station.append(i.river)
+    return sorted(rivers_with_station)
+
+# Task 1D
+def stations_by_river(stations):
+    river_stations = {}
+    for i in stations:
+        if i.river in river_stations.keys():
+            river_stations[i.river].append(i.name)
+        else:
+            river_stations[i.river] = [i.name]
+    for k in river_stations:
+        sorted(river_stations[k])
+    return river_stations
         
