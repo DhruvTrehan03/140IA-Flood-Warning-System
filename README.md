@@ -8,3 +8,4 @@ https://cued-partia-flood-warning.readthedocs.io/. Fork this repository
 to start the activity.
 
 Dhruv Trehan 140 1B,1D
+Isaac Barden 140 1D, 1E, 1F
