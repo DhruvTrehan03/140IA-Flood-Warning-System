@@ -2,8 +2,19 @@ from distutils.command.build import build
 from floodsystem.stationdata import build_station_list
 from floodsystem.geo import rivers_by_station_number
 from floodsystem.station import MonitoringStation
+import pytest
 
-def run():
+
+def test_1E():
+    stations = build_station_list()
+    with pytest.raises(TypeError):
+        rivers_by_station_number(stations, "e")
+    with pytest.raises(ValueError):
+        rivers_by_station_number(stations, 0)
+    with pytest.raises(ValueError):
+        rivers_by_station_number(stations, -1)
+    
+def test_1F():
     s_id = "test-s-id"
     m_id = "test-m-id"
     label = "some station"
@@ -19,6 +30,3 @@ def run():
     s.typical_range = None
     assert s.typical_range_consistent() is False
 
-if __name__ == "__main__":
-    print("*** Task 1A: CUED Part IA Flood Warning System ***")
-    run()
