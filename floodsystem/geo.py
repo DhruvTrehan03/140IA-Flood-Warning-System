@@ -42,7 +42,7 @@ def stations_by_river(stations):
         else:
             river_stations[i.river] = [i.name]
     for k in river_stations:
-        sorted(river_stations[k])
+        river_stations[k].sort()
     return river_stations
 
 # Task 1E
