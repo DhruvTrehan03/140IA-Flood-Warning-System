@@ -8,6 +8,8 @@ def run():
     # Build list of stations
     stations = build_station_list()
     p = (52.2053,0.1218)
+    assert isinstance(p, tuple), 'Coordinate should be a tuple!'
+    assert len(p)==2, 'Not a Valid Coordinate, should be 2 coordinates'
     # Print number of stations
     #print(stations_by_distance(stations,p))
     print("Closest 10:", stations_by_distance(stations,p)[:10])

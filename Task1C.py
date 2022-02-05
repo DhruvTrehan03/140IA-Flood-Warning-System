@@ -8,6 +8,8 @@ def run():
     # Build list of stations
     stations = build_station_list()
     centre = (52.2053,0.1218)
+    assert isinstance(centre, tuple), 'Coordinate should be a tuple!'
+    assert len(centre)==2, 'Not a Valid Coordinate, should be 2 coordinates'
     r=10
     # Print number of stations
     print(stations_within_radius(stations,centre,r))
