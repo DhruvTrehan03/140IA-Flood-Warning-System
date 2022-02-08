@@ -4,6 +4,8 @@ from floodsystem.stationdata import build_station_list
 from floodsystem.geo import rivers_by_station_number
 
 def run():
+    """Checks the monitoring station data for inconsistencies in typical range,
+     and returns a sorted list of stations with inconsistent typical ranges"""
     stations = build_station_list()
     print(inconsistent_typical_range_stations(stations))
 
