@@ -41,15 +41,16 @@ class MonitoringStation:
 
     # Task 1F
     def typical_range_consistent(self):
+        """Returns a boolean value True, if the first for range is less than the second
+        Returns a boolean value False, if there is no typical range, or if the first is greater than the second"""
         if self.typical_range is None:
             return False
-        elif self.typical_range[1] < self.typical_range[0]:
-            return False
-        else:
-            return True
+        return self.typical_range[0] < self.typical_range[1]
 
 # Task 1F
 def inconsistent_typical_range_stations(stations):
+    """Builds a list of stations with inconsistent typical ranges, i.e. no range given, or the second
+    value being greater than the first, and returns it"""
     inconsistent_stations = []
     for i in stations:
         if i.typical_range_consistent() is False:

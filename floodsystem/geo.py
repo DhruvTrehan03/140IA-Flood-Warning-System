@@ -29,6 +29,8 @@ def stations_within_radius(stations, centre, r):
 
 # Task 1D
 def rivers_with_station(stations):
+    """Returns a list of rivers that have monitoring stations on them
+    Arguments: stations, a list of Monitoring station objects"""
     rivers_with_station = []
     for i in stations:
         if i.river not in rivers_with_station:
@@ -37,6 +39,8 @@ def rivers_with_station(stations):
 
 # Task 1D
 def stations_by_river(stations):
+    """Returns a dictionary of rivers as keys, and a list of monitoring stations on that river 
+    Arguments: stations, a list of Monitoring station objects"""
     river_stations = {}
     for i in stations:
         if i.river in river_stations.keys():
@@ -44,12 +48,14 @@ def stations_by_river(stations):
         else:
             river_stations[i.river] = [i.name]
     for k in river_stations:
-        sorted(river_stations[k])
+        river_stations[k].sort()
     return river_stations
 
 # Task 1E
 def rivers_by_station_number(stations, N):
-    
+    """Returns a number of rivers with the greatest number of monitoring stations
+    Rivers with the same number of stations are returned, even beyond the chosen quantity
+    Arguments: station, a list of Monitoring station objects; N, number of rivers to be returned"""
     # Check that N is a valid number of rivers
     if type(N) is not int:
         raise TypeError("Number of rivers must be an integer")
