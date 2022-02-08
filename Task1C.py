@@ -8,6 +8,7 @@ def run():
     # Build list of stations
     stations = build_station_list()
     centre = (52.2053,0.1218)
+    "Check the coordinate given is a tuple with 2 values"
     assert isinstance(centre, tuple), 'Coordinate should be a tuple!'
     assert len(centre)==2, 'Not a Valid Coordinate, should be 2 coordinates'
     r=10
@@ -17,5 +18,5 @@ def run():
 
 
 if __name__ == "__main__":
-    print("*** Task 1A: CUED Part IA Flood Warning System ***")
+    print("*** Task 1C: CUED Part IA Flood Warning System ***")
     run()

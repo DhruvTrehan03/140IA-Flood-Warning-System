@@ -8,15 +8,17 @@ geographical data.
 from .utils import sorted_by_key  
 from haversine import haversine, Unit
 
+# Task 1B
+
 def stations_by_distance(stations, p):
-    station_list = []
-    #from floodsystem.utils import sorted_by_key  
+    station_list = [] 
     for station in stations:
         distance = haversine(station.coord, p)
         station_list.append((station.name,station.town,distance))
     sorted_station = sorted_by_key(station_list, 2)
     return sorted_station
 
+# Task 1C
 def stations_within_radius(stations, centre, r):
     radius = []
     for station in stations:
