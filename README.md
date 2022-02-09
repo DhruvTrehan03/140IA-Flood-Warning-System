@@ -7,5 +7,5 @@ The activity is documented at
 https://cued-partia-flood-warning.readthedocs.io/. Fork this repository
 to start the activity.
 
-Dhruv Trehan 140 1B,1D
+Dhruv Trehan 140 1B,1C
 Isaac Barden 140 1D, 1E, 1F
