@@ -80,6 +80,5 @@ def rivers_by_station_number(stations, N):
     while station_numbers[N-1][1] == station_numbers[N][1] and N < len(station_numbers)-1:
         N += 1
 
-    print(N)
     return station_numbers[0:N]
         
