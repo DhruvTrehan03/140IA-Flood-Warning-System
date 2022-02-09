@@ -54,14 +54,16 @@ def rivers_by_station_number(stations, N):
     """Returns a number of rivers with the greatest number of monitoring stations
     Rivers with the same number of stations are returned, even beyond the chosen quantity
     Arguments: station, a list of Monitoring station objects; N, number of rivers to be returned"""
+    river_stations = stations_by_river(stations)
     # Check that N is a valid number of rivers
     if type(N) is not int:
         raise TypeError("Number of rivers must be an integer")
     if N < 1:
         raise ValueError("Number of rivers must be more than zero")
+    if N > len(river_stations):
+        raise ValueError("Number of rivers asked for cannot exceed number of rivers")
     
     # generate list of tuples for rivers and number of stations
-    river_stations = stations_by_river(stations)
     station_numbers = []
     for k in river_stations.keys():
         station_numbers.append((k,len(river_stations[k])))
