@@ -50,8 +50,6 @@ class MonitoringStation:
     # Task 2B
     def relative_water_level(self):
         """Returns a ratio of a monitoring station's current level as a fraction of its typical range"""
-        print(self.typical_range)
-        print(self.latest_level)
         if not self.typical_range_consistent() or self.latest_level is None:
             return None
         low = self.typical_range[0]
