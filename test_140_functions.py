@@ -3,7 +3,7 @@ from distutils.command.build import build
 from floodsystem.stationdata import build_station_list
 from floodsystem.geo import rivers_by_station_number, rivers_with_station, stations_by_river
 from floodsystem.station import MonitoringStation
-from floodsystem.flood import stations_level_over_threshold
+from floodsystem.flood import stations_level_over_threshold, stations_highest_rel_level
 import pytest
 
 
@@ -110,5 +110,16 @@ def Test_2B():
     s.latest_level = 0.57225
     assert s.relative_water_level() == 0.5
     stations = build_station_list()
+    # check correct error raised
     with pytest.raises(TypeError):
         stations_level_over_threshold(stations, "e")
+    with pytest.raises(ValueError):
+        stations_level_over_threshold(stations, tol)
+
+def Test_2C():
+    
+    # check correct error raised
+    with pytest.raises(TypeError):
+        stations_highest_rel_level(stations, "e")
+    with pytest.raises(ValueError):
+        stations_highest_rel_level(stations, 0)
