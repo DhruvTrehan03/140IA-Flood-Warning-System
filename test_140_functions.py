@@ -6,6 +6,7 @@ from floodsystem.station import MonitoringStation
 import pytest
 
 def test_1D():
+    # checks correct values produced
     s_id = "test-s-id"
     m_id = "test-m-id"
     label = "some station"
@@ -32,6 +33,7 @@ def test_1D():
 
 
 def test_1E():
+    # tests correct errors produced
     stations = build_station_list()
     with pytest.raises(TypeError):
         rivers_by_station_number(stations, "e")
@@ -39,6 +41,9 @@ def test_1E():
         rivers_by_station_number(stations, 0)
     with pytest.raises(ValueError):
         rivers_by_station_number(stations, -1)
+    with pytest.raises(ValueError):
+        rivers_by_station_number(stations, len(stations_by_river(stations))+1)
+    # tests correct values produced    
     s_id = "test-s-id"
     m_id = "test-m-id"
     label = "some station"
@@ -69,6 +74,7 @@ def test_1E():
     assert rivers_by_station_number(stations, 1) == [("River X",2)]
     
 def test_1F():
+    # checks correct values produced
     s_id = "test-s-id"
     m_id = "test-m-id"
     label = "some station"

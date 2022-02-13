@@ -15,5 +15,5 @@ def run():
     print("The River Aire has these monitoring stations {}, the River Cam these ones {}, and the River Thames these {}. All stations are listed in alphabetical order".format(Aire_stations,Cam_stations,Thames_stations))
 
 if __name__ == "__main__":
-    print("*** Task 1A: CUED Part IA Flood Warning System ***")
+    print("*** Task 1D: CUED Part IA Flood Warning System ***")
     run()

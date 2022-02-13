@@ -46,6 +46,16 @@ class MonitoringStation:
         if self.typical_range is None:
             return False
         return self.typical_range[0] < self.typical_range[1]
+    
+    # Task 2B
+    def relative_water_level(self):
+        """Returns a ratio of a monitoring station's current level as a fraction of its typical range"""
+        if not self.typical_range_consistent() or self.latest_level is None:
+            return None
+        low = self.typical_range[0]
+        dif = self.typical_range[1]-self.typical_range[0]
+        ratio = round((self.latest_level-low)/dif, 4)
+        return ratio
 
 # Task 1F
 def inconsistent_typical_range_stations(stations):
