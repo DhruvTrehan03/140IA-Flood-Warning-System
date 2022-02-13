@@ -25,6 +25,8 @@ def stations_highest_rel_level(stations, N):
         raise TypeError("The highest N stations wanted must be a number")
     if N < 1:
         raise ValueError("The highest N stations wanted must be at least 1")
+    if N > len(stations)+1:
+        raise ValueError("Cannot call more stations than there are") 
     update_water_levels(stations)
     vals = stations_level_over_threshold(stations, 0, True)
     return vals[:N]
