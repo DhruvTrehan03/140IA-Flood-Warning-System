@@ -3,7 +3,9 @@ from distutils.command.build import build
 from floodsystem.stationdata import build_station_list
 from floodsystem.geo import rivers_by_station_number, rivers_with_station, stations_by_river
 from floodsystem.station import MonitoringStation
+from floodsystem.flood import stations_level_over_threshold, stations_highest_rel_level
 import pytest
+
 
 def test_1D():
     # checks correct values produced
@@ -72,7 +74,8 @@ def test_1E():
     assert rivers_by_station_number(stations, 1) == [("River X2",1),("River X1",1),("River X",1)]
     stations[1].river = "River X"
     assert rivers_by_station_number(stations, 1) == [("River X",2)]
-    
+
+
 def test_1F():
     # checks correct values produced
     s_id = "test-s-id"
@@ -89,3 +92,34 @@ def test_1F():
     assert s.typical_range_consistent() is False
     s.typical_range = None
     assert s.typical_range_consistent() is False
+
+def Test_2B():
+    # checks correct values produced
+    s_id = "test-s-id"
+    m_id = "test-m-id"
+    label = "some station"
+    coord = (-2.0, 4.0)
+    trange = (-2.3, 3.4445)
+    river = "River X"
+    town = "My Town"
+    s = MonitoringStation(s_id, m_id, label, coord, trange, river, town)
+    s.latest_level = -2.3
+    assert s.relative_water_level() == 0
+    s.latest_level = 3.4445
+    assert s.relative_water_level() == 1
+    s.latest_level = 0.57225
+    assert s.relative_water_level() == 0.5
+    stations = build_station_list()
+    # check correct error raised
+    with pytest.raises(TypeError):
+        stations_level_over_threshold(stations, "e")
+    with pytest.raises(ValueError):
+        stations_level_over_threshold(stations, tol)
+
+def Test_2C():
+    
+    # check correct error raised
+    with pytest.raises(TypeError):
+        stations_highest_rel_level(stations, "e")
+    with pytest.raises(ValueError):
+        stations_highest_rel_level(stations, 0)
