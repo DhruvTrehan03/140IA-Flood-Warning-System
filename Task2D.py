@@ -14,13 +14,14 @@ def run():
     stations = build_station_list()
 
     # Station name to find
-    station_name = "Cam"
+    station_name = "Letcombe Bassett"
 
     # Find station
     station_cam = None
     for station in stations:
         if station.name == station_name:
             station_cam = station
+            print ("station found")
             break
 
     # Check that station could be found. Return if not found.

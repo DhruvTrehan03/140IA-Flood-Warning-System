@@ -14,11 +14,11 @@ def run():
     dt = 10
     for i in range(len(station_name)):
     # Find station
-        print (station_name[i])
         station_cam = None
         for station in stations:
-            if station.name == station_name[i]:
+            if station.name == station_name[i][0]:
                 station_cam = station
+                print (station_cam)
                 break
 
         # Check that station could be found. Return if not found.
