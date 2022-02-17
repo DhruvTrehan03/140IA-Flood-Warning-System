@@ -16,7 +16,9 @@ def stations_level_over_threshold(stations, tol, ignore=False):
                 station_levels.append((i.name,ratio))
         else:
             if ratio is not None and ratio > tol:
-                station_levels.append((i.name,ratio))
+                print (i.name, i.measure_id)
+                if i.measure_id:
+                    station_levels.append((i.name,ratio))
     return sorted_by_key(station_levels, 1, True)
 
 # Task 2C
