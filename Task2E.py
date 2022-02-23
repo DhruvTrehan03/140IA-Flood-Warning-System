@@ -27,9 +27,9 @@ def run():
             return
 
         dates, levels = fetch_measure_levels(station_cam.measure_id, dt=datetime.timedelta(days=dt))
-        plot_water_levels(station_cam, dates, levels)
+        plot_water_levels(station_cam, dates, levels)  #call plotting function
 
-        # Check that station could be found. Return if not found.
+
 
 
 if __name__ == "__main__":

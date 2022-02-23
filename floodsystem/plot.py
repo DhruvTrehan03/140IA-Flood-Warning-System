@@ -4,10 +4,10 @@ from .analysis import polyfit
 import matplotlib
 
 def plot_water_levels(station, dates, levels):
-    high = np.full(( len(levels)), station.typical_range[0])
-    low = np.full(( len(levels)), station.typical_range[1])
-    plt.plot(dates, levels) 
-    plt.plot(dates,high)
+    high = np.full(( len(levels)), station.typical_range[0])    #fetch high and low typical values for station
+    low = np.full(( len(levels)), station.typical_range[1])    
+    plt.plot(dates, levels)                                     #plot high and low typical values for station and the readings for the days chosen
+    plt.plot(dates,high)                 
     plt.plot(dates,low)
     plt.xlabel('date')
     plt.ylabel('water level (m)')
@@ -18,11 +18,11 @@ def plot_water_levels(station, dates, levels):
     plt.show()
 
 def plot_water_level_with_fit(station, dates, levels, p):
-    high = np.full(( len(levels)), station.typical_range[0])
+    high = np.full(( len(levels)), station.typical_range[0])    #fetch high and low typical values for station
     low = np.full(( len(levels)), station.typical_range[1])
-    date = matplotlib.dates.date2num(dates)
+    date = matplotlib.dates.date2num(dates)                     #converts list of dates to a list of floats
 
-    p_coeff = np.polyfit(date - date[0], levels, p)
+    p_coeff = np.polyfit(date - date[0], levels, p)            
 
     # Convert coefficient into a polynomial that can be evaluated
     # e.g. poly(0.3)

@@ -28,14 +28,13 @@ def run():
             return
 
         dates, levels = fetch_measure_levels(station_cam.measure_id, dt=datetime.timedelta(days=dt))
-        print (levels)
         poly, d0 = polyfit(dates, levels, p)
-        plot_water_level_with_fit(station_cam,dates,levels, p)
-        # Check that station could be found. Return if not found.
+        plot_water_level_with_fit(station_cam,dates,levels, p) #call polyfit and plotting function
+
 
 
 if __name__ == "__main__":
-    print("*** Task 2E: CUED Part IA Flood Warning System ***")
+    print("*** Task 2F: CUED Part IA Flood Warning System ***")
     run()
 
 

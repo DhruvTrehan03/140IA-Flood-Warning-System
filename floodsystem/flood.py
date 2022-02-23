@@ -15,14 +15,20 @@ def stations_level_over_threshold(stations, tol, ignore=False):
         ratio = i.relative_water_level()
         if ignore:
             if ratio is not None:
-                dates, levels = fetch_measure_levels(i.measure_id, dt=datetime.timedelta(days=dt))
+                try:
+                    dates, levels = fetch_measure_levels(i.measure_id, dt=datetime.timedelta(days=dt))  #fetch level data from the past day
+                except KeyError:
+                    break                                                                               # if there is an error in fetching data, skip the error causing station
                 if levels:
-                    station_levels.append((i.name,ratio))
+                    station_levels.append((i.name,ratio))                                               # add the station to the list if it has values for the past day (it isn't broken)
         else:
             if ratio is not None and ratio > tol:
-                dates, levels = fetch_measure_levels(i.measure_id, dt=datetime.timedelta(days=dt))               
+                try:
+                    dates, levels = fetch_measure_levels(i.measure_id, dt=datetime.timedelta(days=dt))  #fetch level data from the past day
+                except KeyError:
+                    break                                                                               # if there is an error in fetching data, skip the error causing station
                 if levels:
-                    station_levels.append((i.name,ratio))
+                    station_levels.append((i.name,ratio))                                               # add the station to the list if it has values for the past day (it isn't broken)
     return sorted_by_key(station_levels, 1, True)
 
 # Task 2C
