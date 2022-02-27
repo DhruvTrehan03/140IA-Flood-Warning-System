@@ -6,7 +6,7 @@ from floodsystem.flood import stations_highest_rel_level
 
 def run():
     stations = build_station_list()
-    highestN = stations_highest_rel_level(stations,5)
+    highestN = stations_highest_rel_level(stations,10)
     for i in highestN:
         print(i)
     
