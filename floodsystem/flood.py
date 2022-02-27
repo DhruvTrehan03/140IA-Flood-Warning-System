@@ -13,22 +13,15 @@ def stations_level_over_threshold(stations, tol, ignore=False):
     station_levels = []
     for i in stations:
         ratio = i.relative_water_level()
-        if ignore:
-            if ratio is not None:
-                try:
-                    dates, levels = fetch_measure_levels(i.measure_id, dt=datetime.timedelta(days=dt))  #fetch level data from the past day
-                except KeyError:
-                    break                                                                               # if there is an error in fetching data, skip the error causing station
-                if levels:
-                    station_levels.append((i.name,ratio))                                               # add the station to the list if it has values for the past day (it isn't broken)
+        if i.name == "Letcombe Bassett":
+            break
         else:
-            if ratio is not None and ratio > tol:
-                try:
-                    dates, levels = fetch_measure_levels(i.measure_id, dt=datetime.timedelta(days=dt))  #fetch level data from the past day
-                except KeyError:
-                    break                                                                               # if there is an error in fetching data, skip the error causing station
-                if levels:
-                    station_levels.append((i.name,ratio))                                               # add the station to the list if it has values for the past day (it isn't broken)
+            if ignore:
+                if ratio is not None:                   
+                    station_levels.append((i.name,ratio))                                        
+            else:
+                if ratio is not None and ratio > tol: 
+                    station_levels.append((i.name,ratio))                                           
     return sorted_by_key(station_levels, 1, True)
 
 # Task 2C
@@ -41,4 +34,9 @@ def stations_highest_rel_level(stations, N):
     vals = stations_level_over_threshold(stations, 0, True)
     return vals[:N]
 
-
+# try:
+#     dates, levels = fetch_measure_levels(i.measure_id, dt=datetime.timedelta(days=dt))  
+# except KeyError:
+#     break    
+# if levels:                                                                           
+#     station_levels.append((i.name,ratio))                                               
