@@ -11,7 +11,7 @@ from floodsystem.analysis import polyfit
 
 def run():
     """Presents a list of towns in 4 categories, low risk, moderate risk, high risk, and severe risk of flooding. If a station has relative
-    water levels between two thirds and 1, with a decreasing or constant water level over the last 2 days its town is low risk. If a 
+    water levels between two thirds and 1, with a decreasing or constant water level over the last 2 days its town has no risk. If a 
     station has relative water levels between 1 and 1.5 staying the same or decreasing, unless increasing by more than 0.10 per day,
     or above 1 and and decreasing its town is at moderate risk of flooding. If a station has water levels below 1 and increasing by more than
     0.10 per day, or above 1 and staying the same or decreasing, or above 2 and decreasing its town is at high risk of flooding. If a station
@@ -23,7 +23,7 @@ def run():
     safe_grad = 0
     limit_grad = 0.10
 
-    no_risk
+    no_risk = []
     low_risk = []
     moderate_risk = []
     high_risk = []
