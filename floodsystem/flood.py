@@ -6,7 +6,6 @@ import datetime
 
 # Task 2B
 def stations_level_over_threshold(stations, tol, ignore=False):
-    dt =1
     if not (type(tol) is int or type(tol) is float):
         raise TypeError("The value for tolerance must be a number")
     update_water_levels(stations)
@@ -20,7 +19,7 @@ def stations_level_over_threshold(stations, tol, ignore=False):
                 if ratio is not None:                   
                     station_levels.append((i.name,ratio))                                        
             else:
-                if ratio is not None and ratio > tol: 
+                if ratio is not None and ratio >= tol: 
                     station_levels.append((i.name,ratio))                                           
     return sorted_by_key(station_levels, 1, True)
 # try:
@@ -47,7 +46,7 @@ def stations_level_under_threshold(stations, tol, ignore=False):
     station_levels = []
     for i in stations:
         ratio = i.relative_water_level()
-        if i.name == "Letcombe Bassett" or i.name == "Fiskerton Sluice" or i.name == "Saintbridge":
+        if i.name == "Letcombe Bassett":
             break
         else:
             if ignore:
