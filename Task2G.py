@@ -4,15 +4,15 @@ import numpy as np
 from distutils.command.build import build
 from floodsystem.stationdata import build_station_list, update_water_levels
 from floodsystem.station import MonitoringStation
-from floodsystem.flood import stations_level_under_threshold, stations_lowest_rel_level, stations_level_over_threshold
+from floodsystem.flood import stations_level_under_threshold, stations_level_over_threshold
 from floodsystem.datafetcher import fetch_measure_levels
 from floodsystem.analysis import polyfit
 
 
 def run():
     """Presents a list of towns in 4 categories, low risk, moderate risk, high risk, and severe risk of flooding. If a station has relative
-    water levels below two thirds, or between two thirds and 1, with a decreasing water level over the last 2 days its town is low risk. If a 
-    station has relative water levels between two thirds and 1 staying the same or increasing, unless increasing by more than 0.10 per day,
+    water levels between two thirds and 1, with a decreasing or constant water level over the last 2 days its town is low risk. If a 
+    station has relative water levels between 1 and 1.5 staying the same or decreasing, unless increasing by more than 0.10 per day,
     or above 1 and and decreasing its town is at moderate risk of flooding. If a station has water levels below 1 and increasing by more than
     0.10 per day, or above 1 and staying the same or decreasing, or above 2 and decreasing its town is at high risk of flooding. If a station
     has water levels between 1 and 2 and increasing by more than 0.10 per day or above two staying the same or increasing it is at severe risk
@@ -23,24 +23,25 @@ def run():
     safe_grad = 0
     limit_grad = 0.10
 
+    no_risk
     low_risk = []
     moderate_risk = []
     high_risk = []
     severe_risk = []
 
-    low = stations_level_under_threshold(stations,0.67) # If water levels are below two thirds of the typical range flooding risk is low
-    for i in range(len(low)):
+    none_risk = stations_level_under_threshold(stations,0.67) # If water levels are below two thirds of the typical range flooding risk is low
+    for i in range(len(none_risk)):
     # Find station
         station_cam = None
         for station in stations:
-            if station.name == low[i][0]:
+            if station.name == none_risk[i][0]:
                 station_cam = station
                 break
         if not station_cam:
-            print("Station {} could not be found".format(moderate[i]))
+            print("Station {} could not be found".format(none_risk[i]))
             return
 
-        if station_cam.town not in low_risk:
+        if station_cam.town not in none_risk:
             try:
                 low_risk.append(station_cam.town)
             except:
@@ -182,12 +183,21 @@ def run():
     print("There are {} towns at moderate risk of flooding, these are {}".format(len(moderate_risk),moderate_risk))
     print("There are {} towns at high risk of flooding, these are {}".format(len(high_risk),high_risk))
     print("There are {} towns at severe risk of flooding, these are {}".format(len(severe_risk), severe_risk))
+    risks = {"low risk":low_risk, "moderate risk": moderate_risk, "high risk": high_risk, "severe risk": severe_risk}
     
+    # Ask if information on a specific town is wanted
     while True:
         choice = str(input("Would you like to search for a specific town (y/n)?"))
-        if choice == "n":
+        if choice == "n" or choice == "N":
             break
-        town_choice == str(input("What town would you like to search for"))
+        elif choice == "y" or choice == "Y":
+            town_choice = str(input("What town would you like to search for"))
+            for i in risks:
+                for j in risks[i]:
+                    if town_choice == j:
+                        print("The town you chose, {}, has a {} of flooding".format(j,i))
+        else:
+            print("Please choose an option y or n")
 
 if __name__ == "__main__":
     print("*** Task 2G: CUED Part IA Flood Warning System ***")
