@@ -28,7 +28,6 @@ def plot_water_level_with_fit(station, dates, levels, p):
     # Convert coefficient into a polynomial that can be evaluated
     # e.g. poly(0.3)
     poly = np.poly1d(p_coeff)
-
     # Plot polynomial fit at 30 points along interval (note that polynomial
     # is evaluated using the shift x)
     x1 = np.linspace(date[0], date[-1], 30)
