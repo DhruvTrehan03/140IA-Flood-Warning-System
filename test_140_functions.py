@@ -114,10 +114,10 @@ def Test_2B():
     with pytest.raises(TypeError):
         stations_level_over_threshold(stations, "e")
     with pytest.raises(ValueError):
-        stations_level_over_threshold(stations, tol)
+        stations_level_over_threshold(stations,-1)
 
 def Test_2C():
-    
+    stations = build_station_list()
     # check correct error raised
     with pytest.raises(TypeError):
         stations_highest_rel_level(stations, "e")
