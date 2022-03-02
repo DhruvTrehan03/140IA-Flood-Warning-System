@@ -77,7 +77,10 @@ def run():
             date = matplotlib.dates.date2num(dates)
         if len(date)>0:    
             x1 = np.linspace(date[0], date[-1], 30)
-            diff = np.diff(poly(x1-date[0])) # differentiating the polyfit function and evaluate for average gradient before comparing
+            try:
+                diff = np.diff(poly(x1-date[0])) # differentiating the polyfit function and evaluate for average gradient before comparing
+            except:
+                diff = 0 # issue with np.diff due to data error, assume levels constant
         else:
             diff = station_cam.typical_range[1]
    

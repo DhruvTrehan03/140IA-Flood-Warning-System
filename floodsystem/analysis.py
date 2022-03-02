@@ -14,4 +14,8 @@ def polyfit(dates, levels, p):
         print("No data available so assumed water levels constant")
         poly = np.poly1d([1,0])
         return poly
-
+    except TypeError as err:
+        print(err)
+        print("Data error occured so assumed water level constant")
+        poly = np.poly1d([1,0])
+        return poly
